@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هديتي لك ❤️</title>
+    <style>
+        :root {
+            --primary-color: #ff4d6d;
+            --bg-dark: #0f0c29;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* تأثير النجوم المتساقطة */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* الصفحة الأولى: الدخول */
+        #login-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            width: 300px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 25px;
+            border: none;
+            text-align: center;
+            outline: none;
+        }
+
+        button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover { transform: scale(1.05); background: #ff758f; }
+
+        /* الصفحة الثانية: الذكريات */
+        #main-content {
+            display: none; /* مخفية افتراضياً */
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .header-title { font-size: 2.5rem; margin-top: 50px; }
+
+        .media-container {
+            background: var(--glass);
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .gallery img:hover { transform: scale(1.05); }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        #error-msg { color: #ffb3c1; font-size: 0.8rem; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+    <canvas class="stars" id="starCanvas"></canvas>
+
+    <div id="login-page">
+        <div class="login-card">
+            <h2>هديتي لك ❤️</h2>
+            <input type="password" id="passwordInput" placeholder="أدخل كلمة السر">
+            <button onclick="checkPassword()">دخول</button>
+            <p id="error-msg">كلمة السر غير صحيحة، حاول مرة أخرى ❤️</p>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <h1 class="header-title">مرحباً بك في قصتنا، Jana ❤️</h1>
+        
+        <div class="media-container">
+            <h3>أغنيتنا المفضلة 🎵</h3>
+            <iframe width="100%" height="150" src="https://www.youtube.com/embed/iMZ1skkbUWI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+
+        <h3>أجمل لحظاتنا 📸</h3>
+        <div class="gallery">
+            <img src="https://via.placeholder.com/300x400/ff4d6d/ffffff?text=Our+Photo+1" alt="Memory 1">
+            <img src="https://via.placeholder.com/300x400/ff4d6d/ffffff?text=Our+Photo+2" alt="Memory 2">
+            <img src="https://via.placeholder.com/300x400/ff4d6d/ffffff?text=Our+Photo+3" alt="Memory 3">
+            <img src="https://via.placeholder.com/300x400/ff4d6d/ffffff?text=Our+Photo+4" alt="Memory 4">
+        </div>
+
+        <div class="media-container">
+            <h3>فيديو خاص 🎬</h3>
+            <p>اضغطي لمشاهدة الذكرى على تيك توك</p>
+            <a href="https://vt.tiktok.com/ZSmdhEngm/" target="_blank" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">مشاهدة الفيديو الآن ✨</a>
+        </div>
+
+        <footer>
+            صنع بـ ❤️ من أجلك وحدك
+        </footer>
+    </div>
+
+    <script>
+        // برمجة التحقق من كلمة السر
+        function checkPassword() {
+            const pass = document.getElementById('passwordInput').value;
+            const correctPass = "16122010"; // يمكنك تغييرها هنا
+
+            if (pass === correctPass) {
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                window.scrollTo(0,0);
+            } else {
+                document.getElementById('error-msg').style.display = 'block';
+            }
+        }
+
+        // تأثير خلفية النجوم
+        const canvas = document.getElementById('starCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const stars = [];
+        for(let i=0; i<150; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2,
+                speed: Math.random() * 0.5
+            });
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'white';
+            stars.forEach(s => {
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size, 0, Math.PI*2);
+                ctx.fill();
+                s.y += s.speed;
+                if(s.y > canvas.height) s.y = 0;
+            });
+            requestAnimationFrame(drawStars);
+        }
+        drawStars();
+    </script>
+</body>
+</html>
